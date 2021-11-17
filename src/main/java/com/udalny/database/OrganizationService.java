@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OrganizationHandler {
+public class OrganizationService {
 
-    private static Logger logger = LoggerFactory.getLogger(OrganizationHandler.class);
+    private static Logger logger = LoggerFactory.getLogger(OrganizationService.class);
 
     @Autowired
     private OrganizationRepository organizationRepository;

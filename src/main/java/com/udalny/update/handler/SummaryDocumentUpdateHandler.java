@@ -1,8 +1,8 @@
 package com.udalny.update.handler;
 
-import com.udalny.database.AccountHandler;
-import com.udalny.database.BankHandler;
-import com.udalny.database.OrganizationHandler;
+import com.udalny.database.AccountService;
+import com.udalny.database.BankService;
+import com.udalny.database.OrganizationService;
 import com.udalny.entity.Document;
 import com.udalny.entity.summarydocument.SummaryDocument;
 import com.udalny.repository.DocumentRepository;
@@ -14,13 +14,13 @@ public class SummaryDocumentUpdateHandler
         implements UpdateHandler<SummaryDocument> {
 
     @Autowired
-    private OrganizationHandler organizationHandler;
+    private OrganizationService organizationService;
 
     @Autowired
-    private AccountHandler accountHandler;
+    private AccountService accountService;
 
     @Autowired
-    private BankHandler bankHandler;
+    private BankService bankService;
 
     @Autowired
     private DocumentRepository documentRepository;
@@ -39,12 +39,12 @@ public class SummaryDocumentUpdateHandler
         res.setDocGUID(doc.getDocGuid());
         res.setOperType(doc.getOperType());
         res.setAmountOut(doc.getAmountOut());
-        res.setPayer(organizationHandler.get(doc.getInfPay()));
-        res.setPayerAccount(accountHandler.get(doc.getBankPay()));
-        res.setPayerBank(bankHandler.get(doc.getBankPay()));
-        res.setReceiver(organizationHandler.get(doc.getInfRcp()));
-        res.setReceiverAccount(accountHandler.get(doc.getBankRcp()));
-        res.setReceiverBank(bankHandler.get(doc.getBankRcp()));
+        res.setPayer(organizationService.get(doc.getInfPay()));
+        res.setPayerAccount(accountService.get(doc.getBankPay()));
+        res.setPayerBank(bankService.get(doc.getBankPay()));
+        res.setReceiver(organizationService.get(doc.getInfRcp()));
+        res.setReceiverAccount(accountService.get(doc.getBankRcp()));
+        res.setReceiverBank(bankService.get(doc.getBankRcp()));
 
         documentRepository.save(res);
 

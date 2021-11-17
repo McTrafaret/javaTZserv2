@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DocumentRepository extends CrudRepository<Document, Integer> {
 
-    @Query(value = "SELECT new com.udalny.entity.statistics.DocumentsStatistics(COUNT(d.id), SUM(d.amountOut)/COUNT(d.id)) FROM Document d")
+    @Query(value = "SELECT new com.udalny.entity.statistics.DocumentsStatistics(COUNT(d.id), AVG(d.amountOut)) FROM Document d")
     DocumentsStatistics getStatistics();
 }

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AccountHandler {
+public class AccountService {
 
-    private static Logger logger = LoggerFactory.getLogger(AccountHandler.class);
+    private static Logger logger = LoggerFactory.getLogger(AccountService.class);
 
     @Autowired
     private AccountRepository accountRepository;

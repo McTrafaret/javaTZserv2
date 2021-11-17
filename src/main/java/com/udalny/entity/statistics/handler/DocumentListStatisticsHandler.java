@@ -28,6 +28,6 @@ public class DocumentListStatisticsHandler
         for (Document doc : documentList) {
             temp = temp.add(doc.getAmountOut());
         }
-        return new DocumentsStatistics(count, temp.divide(new BigDecimal(count)));
+        return new DocumentsStatistics(count, temp.divide(new BigDecimal(count)).doubleValue());
     }
 }

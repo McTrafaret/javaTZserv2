@@ -7,9 +7,9 @@ public class DocumentsStatistics {
     private final long count;
     private final BigDecimal averageSum;
 
-    public DocumentsStatistics(long count, BigDecimal averageSum) {
+    public DocumentsStatistics(long count, double averageSum) {
         this.count = count;
-        this.averageSum = averageSum;
+        this.averageSum = BigDecimal.valueOf(averageSum);
     }
 
     public long getCount() {
