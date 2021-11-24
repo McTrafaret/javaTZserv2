@@ -1,7 +1,9 @@
 package com.udalny.update.handler;
 
-public interface UpdateHandler<T> {
+import com.udalny.entity.packet.Packet;
 
-    boolean probe(T doc);
-    void update(T doc);
+public interface UpdateHandler {
+
+    boolean probe(Packet p);
+    void update(Packet p);
 }

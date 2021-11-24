@@ -38,6 +38,19 @@ public class OrganizationService {
         return organizationRepository.save(new Organization(inn, kpp, cname));
     }
 
+    public Organization get(String cname) {
+
+        if(organizationRepository.existsByCname(cname)) {
+            List<Organization> res = organizationRepository.getByCname(cname);
+            if (res.size() == 1)
+                return res.get(0);
+            else
+                logger.warn("Found more than one entry of organizations by cname");
+        }
+        return organizationRepository.save(new Organization("Unknown", "Unknown", cname)); // don't know what to do with this
+
+    }
+
     public Organization get(InfPay infPay) {
         return get(infPay.getInnPay(), infPay.getKppPay(), infPay.getCnamePay());
     }
