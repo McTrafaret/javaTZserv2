@@ -2,6 +2,8 @@ package com.udalny.database;
 
 
 import com.udalny.entity.Organization;
+import com.udalny.entity.statistics.OrganizationInfo;
+import com.udalny.entity.statistics.OrganizationInfoObject;
 import com.udalny.entity.summarydocument.InfPay;
 import com.udalny.entity.summarydocument.InfRcp;
 import com.udalny.repository.OrganizationRepository;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -57,6 +60,22 @@ public class OrganizationService {
 
     public Organization get(InfRcp infRcp) {
         return get(infRcp.getInnPay(), infRcp.getKppPay(), infRcp.getCnamePay());
+    }
+
+    public List<OrganizationInfoObject> getInfo() {
+        List<OrganizationInfoObject> ret = new LinkedList<>();
+        for (OrganizationInfo info : organizationRepository.getAllInfo()) {
+            ret.add(new OrganizationInfoObject(info.getCname(), info.getPay(), info.getRec()));
+        }
+        return ret;
+    }
+
+    public OrganizationInfoObject getInfo(String cname) {
+        OrganizationInfo info = organizationRepository.getInfoByCname(cname);
+        if(info == null)
+            return null;
+
+        return new OrganizationInfoObject(info.getCname(), info.getPay(), info.getRec());
     }
 
 }
