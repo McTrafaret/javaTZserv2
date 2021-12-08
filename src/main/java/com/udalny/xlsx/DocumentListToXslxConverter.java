@@ -43,6 +43,7 @@ public class DocumentListToXslxConverter
         try {
             OutputStream out = new FileOutputStream(String.format("%s/%s", savePath, filename));
             workbook.write(out);
+            workbook.close();
         } catch (Exception ex) {
             logger.error("Failed to create file", ex);
         }
